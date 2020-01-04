@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +12,7 @@ using Serilog;
 using Streetwood.API.Bus;
 using Streetwood.API.Filters;
 using Streetwood.API.Middleware;
+using Streetwood.Core.Domain.Abstract;
 using Streetwood.Core.Extensions;
 using Streetwood.Core.Modules;
 using Streetwood.Infrastructure.Modules;
@@ -95,5 +97,6 @@ namespace Streetwood.API
             applicationLifetime.ApplicationStopped.Register(() => Container.Dispose());
             logger.LogInformation("Application successfully configured.");
         }
+
     }
 }

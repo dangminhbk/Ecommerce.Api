@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Streetwood.API.Bus;
+using Streetwood.API.Controllers.Dto;
 using Streetwood.Infrastructure.Commands.Models.Product;
 
 namespace Streetwood.API.Controllers
@@ -20,15 +21,15 @@ namespace Streetwood.API.Controllers
             this.bus = bus;
         }
 
-        [HttpPost("{id}/{isMain}")]
-        public async Task<IActionResult> Post(IFormFile file, [FromRoute] int id, [FromRoute] bool isMain)
+        [HttpPost()]
+        public async Task<IActionResult> Post([FromForm]ImagePostDto input)
         {
-            if (file == null)
+            if (input.File == null)
             {
                 return BadRequest("Missing file");
             }
 
-            await bus.SendAsync(new AddProductImageCommandModel(id, file, isMain));
+            await bus.SendAsync(new AddProductImageCommandModel(input.Id, input.File, input.IsMain));
             return Accepted();
         }
 

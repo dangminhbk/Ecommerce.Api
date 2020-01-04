@@ -36,7 +36,7 @@ namespace Streetwood.Infrastructure.Services.Implementations.Commands
             await userRepository.AddAsync(user);
             await userRepository.SaveChangesAsync();
 
-            await emailService.SendNewUserEmailAsync(user);
+            // await emailService.SendNewUserEmailAsync(user);
         }
 
         public async Task EraseUserDataAsync(Guid id)

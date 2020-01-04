@@ -49,5 +49,6 @@ namespace Streetwood.Core.Extensions
 
             return result;
         }
+
     }
 }
