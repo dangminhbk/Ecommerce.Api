@@ -29,7 +29,6 @@ namespace Streetwood.Core.Domain.Entities.Configuration
 
             builder.Property(s => s.Name).HasMaxLength(50);
             builder.Property(s => s.NameEng).HasMaxLength(50);
-            builder.Property(s => s.Sizes).HasMaxLength(50);
         }
     }
 }

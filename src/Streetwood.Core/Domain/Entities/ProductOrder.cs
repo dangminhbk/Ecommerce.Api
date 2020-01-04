@@ -6,8 +6,6 @@ namespace Streetwood.Core.Domain.Entities
 {
     public class ProductOrder : Entity
     {
-        private readonly List<ProductOrderCharm> productOrderCharms = new List<ProductOrderCharm>();
-
         public int Amount { get; protected set; }
 
         public decimal CurrentProductPrice { get; protected set; }
@@ -26,7 +24,6 @@ namespace Streetwood.Core.Domain.Entities
 
         public virtual Product Product { get; protected set; }
 
-        public virtual IReadOnlyCollection<ProductOrderCharm> ProductOrderCharms => productOrderCharms;
 
         public ProductOrder(int amount, string comment)
         {
@@ -56,11 +53,5 @@ namespace Streetwood.Core.Domain.Entities
 
         public void AddProduct(Product product)
             => Product = product;
-
-        public void AddProductOrderCharm(ProductOrderCharm orderCharm)
-            => productOrderCharms.Add(orderCharm);
-
-        public void AddProductOrderCharms(IEnumerable<ProductOrderCharm> orderCharms)
-            => productOrderCharms.AddRange(orderCharms);
     }
 }

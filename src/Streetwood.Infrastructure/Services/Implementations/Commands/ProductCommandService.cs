@@ -27,7 +27,7 @@ namespace Streetwood.Infrastructure.Services.Implementations.Commands
         {
             var category = await productCategoryRepository.GetAndEnsureExistAsync(productCategoryId);
             var imagesPath = pathManager.GetProductPath(category.UniqueName, name.AppendRandom(5));
-            var product = new Product(name, nameEng, price, description, descriptionEng, acceptCharms, maxCharmsCount, sizes, imagesPath);
+            var product = new Product(name, nameEng, price, description, descriptionEng, imagesPath);
 
             category.AddProduct(product);
             await productCategoryRepository.SaveChangesAsync();
@@ -45,9 +45,6 @@ namespace Streetwood.Infrastructure.Services.Implementations.Commands
             product.SetPrice(price);
             product.SetDescription(description);
             product.SetDescriptionEng(descriptionEng);
-            product.SetAcceptCharms(acceptCharms);
-            product.SetSizes(sizes);
-
             await productRepository.SaveChangesAsync();
         }
 

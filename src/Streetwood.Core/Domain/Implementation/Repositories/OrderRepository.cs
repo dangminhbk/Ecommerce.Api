@@ -35,9 +35,6 @@ namespace Streetwood.Core.Domain.Implementation.Repositories
                 .Include(s => s.ProductOrders)
                     .ThenInclude(s => s.Product)
                         .ThenInclude(s => s.Images)
-                .Include(s => s.ProductOrders)
-                    .ThenInclude(s => s.ProductOrderCharms)
-                        .ThenInclude(s => s.Charm)
                 .SingleOrDefaultAsync();
 
             if (order == null)

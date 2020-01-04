@@ -8,7 +8,6 @@ namespace Streetwood.Infrastructure.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<ProductOrderCharmsHelper>().As<IProductOrderCharmsHelper>().InstancePerLifetimeScope();
             builder.RegisterType<ProductOrderHelper>().As<IProductOrderHelper>().InstancePerLifetimeScope();
         }
     }

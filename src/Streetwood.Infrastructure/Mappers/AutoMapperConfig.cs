@@ -13,7 +13,6 @@ namespace Streetwood.Infrastructure.Mappers
                 cfg.AddProfile(new ShipmentProfile());
                 cfg.AddProfile(new ProductCategoryProfile());
                 cfg.AddProfile(new ProductProfile());
-                cfg.AddProfile(new CharmCategoryProfile());
                 cfg.AddProfile(new ProductCategoryDiscountProfile());
                 cfg.AddProfile(new AddressProfile());
                 cfg.AddProfile(new OrderDiscountProfile());

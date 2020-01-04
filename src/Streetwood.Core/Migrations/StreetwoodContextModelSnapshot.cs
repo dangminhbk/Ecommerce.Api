@@ -15,7 +15,7 @@ namespace Streetwood.Core.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.8-servicing-32085")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -40,48 +40,6 @@ namespace Streetwood.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("Streetwood.Core.Domain.Entities.Charm", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("CharmCategoryId");
-
-                    b.Property<string>("ImagePath");
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("NameEng");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<int>("Status");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharmCategoryId");
-
-                    b.ToTable("Charms");
-                });
-
-            modelBuilder.Entity("Streetwood.Core.Domain.Entities.CharmCategory", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Name");
-
-                    b.Property<string>("NameEng");
-
-                    b.Property<int>("Status");
-
-                    b.Property<string>("UniqueName");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CharmCategories");
                 });
 
             modelBuilder.Entity("Streetwood.Core.Domain.Entities.DiscountCategory", b =>
@@ -212,15 +170,11 @@ namespace Streetwood.Core.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<bool>("AcceptCharms");
-
                     b.Property<string>("Description");
 
                     b.Property<string>("DescriptionEng");
 
                     b.Property<string>("ImagesPath");
-
-                    b.Property<int>("MaxCharmsCount");
 
                     b.Property<string>("Name")
                         .HasMaxLength(50);
@@ -232,9 +186,6 @@ namespace Streetwood.Core.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<Guid?>("ProductCategoryId");
-
-                    b.Property<string>("Sizes")
-                        .HasMaxLength(50);
 
                     b.Property<int>("Status");
 
@@ -330,29 +281,6 @@ namespace Streetwood.Core.Migrations
                     b.ToTable("ProductOrders");
                 });
 
-            modelBuilder.Entity("Streetwood.Core.Domain.Entities.ProductOrderCharm", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("CharmId");
-
-                    b.Property<decimal>("CurrentPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<Guid?>("ProductOrderId");
-
-                    b.Property<int>("Sequence");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CharmId");
-
-                    b.HasIndex("ProductOrderId");
-
-                    b.ToTable("ProductOrderCharms");
-                });
-
             modelBuilder.Entity("Streetwood.Core.Domain.Entities.Shipment", b =>
                 {
                     b.Property<Guid>("Id")
@@ -415,14 +343,6 @@ namespace Streetwood.Core.Migrations
                         .HasFilter("[Email] IS NOT NULL");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Streetwood.Core.Domain.Entities.Charm", b =>
-                {
-                    b.HasOne("Streetwood.Core.Domain.Entities.CharmCategory", "CharmCategory")
-                        .WithMany("Charms")
-                        .HasForeignKey("CharmCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Streetwood.Core.Domain.Entities.DiscountCategory", b =>
@@ -496,17 +416,6 @@ namespace Streetwood.Core.Migrations
                         .WithMany("ProductOrders")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("Streetwood.Core.Domain.Entities.ProductOrderCharm", b =>
-                {
-                    b.HasOne("Streetwood.Core.Domain.Entities.Charm", "Charm")
-                        .WithMany("ProductOrderCharms")
-                        .HasForeignKey("CharmId");
-
-                    b.HasOne("Streetwood.Core.Domain.Entities.ProductOrder", "ProductOrder")
-                        .WithMany("ProductOrderCharms")
-                        .HasForeignKey("ProductOrderId");
                 });
 #pragma warning restore 612, 618
         }

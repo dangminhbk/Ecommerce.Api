@@ -10,10 +10,6 @@ namespace Streetwood.Core.Domain.Implementation
     {
         public DbSet<Address> Addresses { get; set; }
 
-        public DbSet<Charm> Charms { get; set; }
-
-        public DbSet<CharmCategory> CharmCategories { get; set; }
-
         public DbSet<Image> Images { get; set; }
 
         public DbSet<Order> Orders { get; set; }
@@ -30,8 +26,6 @@ namespace Streetwood.Core.Domain.Implementation
 
         public DbSet<ProductOrder> ProductOrders { get; set; }
 
-        public DbSet<ProductOrderCharm> ProductOrderCharms { get; set; }
-
         public DbSet<Shipment> Shipments { get; set; }
 
         public DbSet<User> Users { get; set; }
@@ -47,8 +41,6 @@ namespace Streetwood.Core.Domain.Implementation
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new AddressConfiguration());
-            builder.ApplyConfiguration(new CharmCategoryConfiguration());
-            builder.ApplyConfiguration(new CharmCategoryConfiguration());
             builder.ApplyConfiguration(new ImageConfiguration());
             builder.ApplyConfiguration(new OrderConfiguration());
             builder.ApplyConfiguration(new OrderDiscountConfiguration());
@@ -56,7 +48,6 @@ namespace Streetwood.Core.Domain.Implementation
             builder.ApplyConfiguration(new ProductCategoryConfiguration());
             builder.ApplyConfiguration(new ProductCategoryDiscountConfiguration());
             builder.ApplyConfiguration(new ProductOrderConfiguration());
-            builder.ApplyConfiguration(new ProductOrderCharmConfiguration());
             builder.ApplyConfiguration(new ShipmentConfiguration());
             builder.ApplyConfiguration(new UserConfiguration());
             builder.ApplyConfiguration(new DiscountCategoryConfiguration());

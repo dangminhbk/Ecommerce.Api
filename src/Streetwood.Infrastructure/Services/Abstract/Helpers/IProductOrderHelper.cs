@@ -7,7 +7,5 @@ namespace Streetwood.Infrastructure.Services.Abstract.Helpers
 {
     public interface IProductOrderHelper
     {
-        ApplyCharmsToProductOrderResult ApplyCharmsToProductOrder(
-            ProductOrder productOrder, ProductWithCharmsOrderDto productWithCharmsOrder, IList<Charm> charms, decimal finalPrice);
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Streetwood.Core.Migrations
 {
-    public partial class Init_Migration : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,21 +22,6 @@ namespace Streetwood.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Addresses", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "CharmCategories",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    NameEng = table.Column<string>(nullable: true),
-                    UniqueName = table.Column<string>(nullable: true),
-                    Status = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CharmCategories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -128,7 +113,6 @@ namespace Streetwood.Core.Migrations
                     FirstName = table.Column<string>(maxLength: 30, nullable: true),
                     LastName = table.Column<string>(maxLength: 40, nullable: true),
                     CreationDateTime = table.Column<DateTime>(nullable: false),
-                    PhoneNumber = table.Column<int>(nullable: false),
                     ChangePasswordToken = table.Column<string>(nullable: true),
                     RefreshToken = table.Column<string>(nullable: true),
                     UserStatus = table.Column<int>(nullable: false),
@@ -137,29 +121,6 @@ namespace Streetwood.Core.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Charms",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    NameEng = table.Column<string>(nullable: true),
-                    ImagePath = table.Column<string>(nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
-                    Status = table.Column<int>(nullable: false),
-                    CharmCategoryId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Charms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Charms_CharmCategories_CharmCategoryId",
-                        column: x => x.CharmCategoryId,
-                        principalTable: "CharmCategories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,8 +134,6 @@ namespace Streetwood.Core.Migrations
                     Description = table.Column<string>(nullable: true),
                     DescriptionEng = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    AcceptCharms = table.Column<bool>(nullable: false),
-                    Sizes = table.Column<string>(maxLength: 50, nullable: true),
                     ImagesPath = table.Column<string>(nullable: true),
                     Status = table.Column<int>(nullable: false),
                     ProductCategoryId = table.Column<Guid>(nullable: true)
@@ -325,38 +284,6 @@ namespace Streetwood.Core.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ProductOrderCharms",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    CurrentPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CharmId = table.Column<Guid>(nullable: true),
-                    Sequence = table.Column<int>(nullable: false),
-                    ProductOrderId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductOrderCharms", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductOrderCharms_Charms_CharmId",
-                        column: x => x.CharmId,
-                        principalTable: "Charms",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_ProductOrderCharms_ProductOrders_ProductOrderId",
-                        column: x => x.ProductOrderId,
-                        principalTable: "ProductOrders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Charms_CharmCategoryId",
-                table: "Charms",
-                column: "CharmCategoryId");
-
             migrationBuilder.CreateIndex(
                 name: "IX_DiscountCategories_ProductCategoryDiscountId",
                 table: "DiscountCategories",
@@ -398,16 +325,6 @@ namespace Streetwood.Core.Migrations
                 column: "ParentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ProductOrderCharms_CharmId",
-                table: "ProductOrderCharms",
-                column: "CharmId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductOrderCharms_ProductOrderId",
-                table: "ProductOrderCharms",
-                column: "ProductOrderId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ProductOrders_OrderId",
                 table: "ProductOrders",
                 column: "OrderId");
@@ -444,16 +361,7 @@ namespace Streetwood.Core.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
-                name: "ProductOrderCharms");
-
-            migrationBuilder.DropTable(
-                name: "Charms");
-
-            migrationBuilder.DropTable(
                 name: "ProductOrders");
-
-            migrationBuilder.DropTable(
-                name: "CharmCategories");
 
             migrationBuilder.DropTable(
                 name: "Orders");

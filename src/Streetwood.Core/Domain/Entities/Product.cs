@@ -21,12 +21,6 @@ namespace Streetwood.Core.Domain.Entities
 
         public decimal Price { get; protected set; }
 
-        public bool AcceptCharms { get; protected set; }
-
-        public int MaxCharmsCount { get; protected set; }
-
-        public string Sizes { get; protected set; }
-
         public string ImagesPath { get; protected set; }
 
         public ItemStatus Status { get; protected set; }
@@ -38,18 +32,15 @@ namespace Streetwood.Core.Domain.Entities
         public virtual IReadOnlyCollection<ProductOrder> ProductOrders => productOrders;
 
         public Product(string name, string nameEng, decimal price, string description, string descriptionEng,
-            bool acceptCharms, int maxCharmsCount, string sizes, string imagesPath)
+            string imagesPath)
         {
             SetName(name);
             SetNameEng(nameEng);
             SetPrice(price);
             SetDescription(description);
             SetDescriptionEng(descriptionEng);
-            AcceptCharms = acceptCharms;
-            SetSizes(sizes);
             SetStatus(ItemStatus.Available);
             ImagesPath = imagesPath;
-            MaxCharmsCount = maxCharmsCount;
         }
 
         protected Product()
@@ -71,14 +62,8 @@ namespace Streetwood.Core.Domain.Entities
         public void SetDescriptionEng(string description)
             => DescriptionEng = description;
 
-        public void SetSizes(string sizes)
-            => Sizes = sizes;
-
         public void SetStatus(ItemStatus status)
             => Status = status;
-
-        public void SetAcceptCharms(bool acceptCharms)
-            => AcceptCharms = acceptCharms;
 
         public void AddImage(Image image)
             => images.Add(image);

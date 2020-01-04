@@ -10,10 +10,6 @@ namespace Streetwood.Core.Domain.Abstract
     {
         DbSet<Address> Addresses { get; set; }
 
-        DbSet<Charm> Charms { get; set; }
-
-        DbSet<CharmCategory> CharmCategories { get; set; }
-
         DbSet<Image> Images { get; set; }
 
         DbSet<Order> Orders { get; set; }
@@ -29,8 +25,6 @@ namespace Streetwood.Core.Domain.Abstract
         DbSet<ProductCategoryDiscount> ProductCategoryDiscounts { get; set; }
 
         DbSet<ProductOrder> ProductOrders { get; set; }
-
-        DbSet<ProductOrderCharm> ProductOrderCharms { get; set; }
 
         DbSet<Shipment> Shipments { get; set; }
 
